@@ -1,77 +1,135 @@
 <!DOCTYPE html>
 <html>
-<title>W3.CSS Template</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
-body,h1 {font-family: "Raleway", Arial, sans-serif}
-h1 {letter-spacing: 6px}
-.w3-row-padding img {margin-bottom: 12px}
+<head>
+<title>JavaScript Quiz</title>
+    <style>
+body {
+background-color: lightblue;
+font-family: Helvetica;
+}
+
+#main {
+width: 80%;
+max-width: 950px;
+border: 1px gray solid;
+margin: auto;
+padding: 10px;
+background-color: white;
+border-radius: 10px;
+}
+
+#header {
+margin-top: 0;
+border: 2px solid black;
+padding: 5px;
+height: 150px;
+background: beige;
+background-image: url("blue.jpg");
+color: white;
+}
+
+label {
+display: block;
+}
+
+input {
+width: 30px;
+margin-left: 20px;
+}
+
+input[type="text"] {
+width: 450px; 
+height: 30px;
+margin-left: 10px;
+
+ }
+        
+textarea {
+width: 450px; 
+height: 100px;
+margin-left: 10px;
+
+ }
+
+h2 {
+clear: both;
+padding-top: 20px;
+}
+
+button {
+width: 100px;
+margin-top: 20px;
+}
+
 </style>
-<body>
+</head>
 
-<!-- !PAGE CONTENT! -->
-<div class="w3-content" style="max-width:1500px">
+ <body>
+<div id="main"><!-- open main div -->
+<div id="header"><!-- open header div -->
+<h1></h1>
+</div><!-- close header div -->
 
-<!-- Header -->
-<header class="w3-panel w3-center w3-opacity" style="padding:128px 16px">
-  <h1 class="w3-xlarge">Questionnaire and Quiz System</h1>
-  <h1>Design VI - Group 5</h1>
+<h1>Example Test 1</h1>
+<form id="form1">
+<fieldset>
+    
 
-  <div class="w3-padding-32">
-    <div class="w3-bar w3-border">
-      <a href="index.html" class="w3-bar-item w3-button">Home</a>
-      <a href="take.html" class="w3-bar-item w3-button w3-light-grey">Take</a>
-      <a href="create.html" class="w3-bar-item w3-button">Create</a>
-      <a href="view_results.html" class="w3-bar-item w3-button w3-light-grey">View Results</a>
-    </div>
-  </div>
-</header>
+<h2>Please enter your first name and last name:</h2>
+<input type="text" id="test"  value="" />
+    
+<h2>What kind of bread are you and why?</h2>
+<textarea name="text" rows="10" cols="75"></textarea>
 
-<!-- Photo Grid
-<div class="w3-row-padding w3-grayscale" style="margin-bottom:128px">
-  <div class="w3-half">
-    <img src="/w3images/wedding.jpg" style="width:100%">
-    <img src="/w3images/rocks.jpg" style="width:100%">
-    <img src="/w3images/falls2.jpg" style="width:100%">
-    <img src="/w3images/paris.jpg" style="width:100%">
-    <img src="/w3images/nature.jpg" style="width:100%">
-    <img src="/w3images/mist.jpg" style="width:100%">
-    <img src="/w3images/paris.jpg" style="width:100%">
-  </div>
 
-  <div class="w3-half">
-    <img src="/w3images/underwater.jpg" style="width:100%">
-    <img src="/w3images/ocean.jpg" style="width:100%">
-    <img src="/w3images/wedding.jpg" style="width:100%">
-    <img src="/w3images/mountainskies.jpg" style="width:100%">
-    <img src="/w3images/rocks.jpg" style="width:100%">
-    <img src="/w3images/underwater.jpg" style="width:100%">
-  </div>
-</div>
--->
+<h2>Design 6 is a great class?</h2>
+<label for="d6_true"><input type="radio" name="d6" value="50" id="d6_true" />True</label>
+<label for="d6_false"><input type="radio" name="d6" value="0" id="d6_false" />False</label>
+
+
+<h2>Favorite Food?</h2>
+<label for="food_pizza"><input type="radio" name="food" value="0" id="food_pizza" />Pizza</label>
+<label for="food_chinese"><input type="radio" name="food" value="0" id="food_chinese" />Chinese</label>
+<label for="food_salad"><input type="radio" name="food" value="0" id="food_salad" />Salad</label>
+<label for="food_all"><input type="radio" name="food" value="50" id="food_all"/>All of the above</label>
+
+
+<button type="submit" value="Submit">Submit</button>
+</fieldset>
+    
+    
+</form>
 
 
 
-<!-- End Page Content -->
-</div>
+<p>Your grade is: <span id="grade">__</span></p>
+<p id="grade2"></p>
+</div><!-- close main div -->
+     
+     <script>
+document.getElementById("form1").onsubmit=function() {
+       d6 = parseInt(document.querySelector('input[name = "d6"]:checked').value);
+	   food = parseInt(document.querySelector('input[name = "food"]:checked').value);
+	   
+	   
+	   result = d6 + food;
+	   
+	document.getElementById("grade").innerHTML = result;
+	   
 
-<!-- Footer -->
-<footer class="w3-container w3-padding-64 w3-light-grey w3-center w3-large">
+if (result == 0) {result2 = "I don't think you studied."};
+if (result == 25) {result2 = "You need to spend more time. Try again."};
+if (result == 50) {result2 = "I think you could do better. Try again."};
+if (result == 75) {result2 = "So close. Try again."};
+if (result == 100) {result2 = "Excellent! You're a JavaScript pro!"};
+document.getElementById("grade2").innerHTML = result2; 
+
+
+return false; // required to not refresh the page; just leave this here
+} //this ends the submit function
 
 
 
-  <!-- <i class="fa fa-facebook-official w3-hover-opacity"></i>
-  <i class="fa fa-instagram w3-hover-opacity"></i>
-  <i class="fa fa-snapchat w3-hover-opacity"></i>
-  <i class="fa fa-pinterest-p w3-hover-opacity"></i>
-  <i class="fa fa-twitter w3-hover-opacity"></i>
-  <i class="fa fa-linkedin w3-hover-opacity"></i> -->
-  <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank" class="w3-hover-text-green">w3.css</a></p>
-</footer>
-
+</script>
 </body>
 </html>
