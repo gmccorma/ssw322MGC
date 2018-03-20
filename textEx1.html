@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>JavaScript Quiz</title>
+    <style>
+body {
+background-color: lightblue;
+font-family: Helvetica;
+}
+
+#main {
+width: 80%;
+max-width: 950px;
+border: 1px gray solid;
+margin: auto;
+padding: 10px;
+background-color: white;
+border-radius: 10px;
+}
+
+#header {
+margin-top: 0;
+border: 2px solid black;
+padding: 5px;
+height: 150px;
+background: beige;
+background-image: url("blue.jpg");
+color: white;
+}
+
+label {
+display: block;
+}
+
+input {
+width: 30px;
+margin-left: 20px;
+}
+
+input[type="text"] {
+width: 450px; 
+height: 30px;
+margin-left: 10px;
+
+ }
+        
+textarea {
+width: 450px; 
+height: 100px;
+margin-left: 10px;
+
+ }
+
+h2 {
+clear: both;
+padding-top: 20px;
+}
+
+button {
+width: 100px;
+margin-top: 20px;
+}
+
+</style>
+</head>
+
+ <body>
+<div id="main"><!-- open main div -->
+<div id="header"><!-- open header div -->
+<h1></h1>
+</div><!-- close header div -->
+
+<h1>Example Test 1</h1>
+<form id="form1">
+<fieldset>
+    
+
+<h2>Please enter your first name and last name:</h2>
+<input type="text" id="test"  value="" />
+    
+<h2>What kind of bread are you and why?</h2>
+<textarea name="text" rows="10" cols="75"></textarea>
+
+
+<h2>Design 6 is a great class?</h2>
+<label for="d6_true"><input type="radio" name="d6" value="50" id="d6_true" />True</label>
+<label for="d6_false"><input type="radio" name="d6" value="0" id="d6_false" />False</label>
+
+
+<h2>Favorite Food?</h2>
+<label for="food_pizza"><input type="radio" name="food" value="0" id="food_pizza" />Pizza</label>
+<label for="food_chinese"><input type="radio" name="food" value="0" id="food_chinese" />Chinese</label>
+<label for="food_salad"><input type="radio" name="food" value="0" id="food_salad" />Salad</label>
+<label for="food_all"><input type="radio" name="food" value="50" id="food_all"/>All of the above</label>
+
+
+<button type="submit" value="Submit">Submit</button>
+</fieldset>
+    
+    
+</form>
+
+
+
+<p>Your grade is: <span id="grade">__</span></p>
+<p id="grade2"></p>
+</div><!-- close main div -->
+     
+     <script>
+document.getElementById("form1").onsubmit=function() {
+       d6 = parseInt(document.querySelector('input[name = "d6"]:checked').value);
+	   food = parseInt(document.querySelector('input[name = "food"]:checked').value);
+	   
+	   
+	   result = d6 + food;
+	   
+	document.getElementById("grade").innerHTML = result;
+	   
+
+if (result == 0) {result2 = "I don't think you studied."};
+if (result == 25) {result2 = "You need to spend more time. Try again."};
+if (result == 50) {result2 = "I think you could do better. Try again."};
+if (result == 75) {result2 = "So close. Try again."};
+if (result == 100) {result2 = "Excellent! You're a JavaScript pro!"};
+document.getElementById("grade2").innerHTML = result2; 
+
+
+return false; // required to not refresh the page; just leave this here
+} //this ends the submit function
+
+
+
+</script>
+</body>
+</html>
