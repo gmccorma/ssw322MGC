@@ -33,27 +33,25 @@ h1 {letter-spacing: 6px}
 
   <div class="w3-padding-32 w3-center w3-padding-large">
     <div class="w3-bar w3-border w3-center w3-padding-large">
-	<h1>Choose Question Type:</h1>
+	<h1>Add Another Question?</h1>
 	
 	<!-- Modify further to store in MySQL server-->
+
 	
-	<!-- Radio buttons with options for chossing question type-->
-	<label for="male">True/False</label>
-	<input type="radio" name="ques_type" id="tf" value="True/False"><br>
-	<label for="male">Multiple Choice</label>
-	<input type="radio" name="ques_type" id="mult" value="Multiple Choice"><br>
-	<label for="female">Short Answer</label>
-	<input type="radio" name="ques_type" id="s_ans" value="Short Answer"><br>
-	<label for="other">Essay Answer</label>
-	<input type="radio" name="ques_type" id="e_ans" value="Essay Answer"><br>
-	<label for="other">Matching</label>
-	<input type="radio" name="ques_type" id="match" value="Matching"><br>
-	<label for="other">Ranking</label>
-	<input type="radio" name="ques_type" id="rank" value="Ranking"><br><br>
+	<script>
+		var survey_name = document.getElementById('test_name');
+	</script>
 	
-	<!-- Next and Previous buttoms for navigating through creation of test/survey-->
+	<!-- Yes and No buttoms for navigating through creation of test/survey-->
+	<input type="button" onclick="location.href='choose_question_type.html';" value="Yes" />
+	<input type="submit" onclick="location.href='choose_question_type.html';" value="No" />
+	
+	<br>
+	<br>
+	
+	<!-- Next and Previous buttoms for navigating through creation of test/survey
 	<input type="button" onclick="location.href='create.html';" value="Previous" />
-	<input type="submit" onclick="location.href='index.html';" value="Next" />
+	<input type="submit" onclick="location.href='choose_question_type.html';" value="Next" />-->
     </div>
   </div>
 
