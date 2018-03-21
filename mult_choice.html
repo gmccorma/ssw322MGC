@@ -42,23 +42,16 @@ h1 {letter-spacing: 6px}
 	
 	<h2>Add Answer Choices:</h2>
 	<input type="label">
-	<button onclick="myFunction()">Add</button><br>
-	<script>
-	
-	function myFunction() {
-		var btn = document.createElement("BUTTON");
-		var t = document.createTextNode("Add");
-		button.appendChild(t);
-		docuemnt.body.appendChild(btn);
-	}
-	</script>
+	<button id="add">Add</button>
+
 	<p id="demo"></p>
 	
 	<br><br>
 	
 
 	
-	<!-- Next and Previous buttoms for navigating through creation of test/survey-->
+	<!-- Cancel, Next and Previous buttoms for navigating through creation of test/survey-->
+	<input type="button" onclick="location.href='index.html';" value="Cancel" />
 	<input type="button" onclick="location.href='create.html';" value="Previous" />
 	<input type="submit" onclick="location.href='add_another.html';" value="Next" />
     </div>
@@ -83,6 +76,20 @@ h1 {letter-spacing: 6px}
   <i class="fa fa-linkedin w3-hover-opacity"></i> -->
   <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank" class="w3-hover-text-green">w3.css</a></p>
 </footer>
+
+
+<script>
+document.getElementById("add").onclick = function() {myFunction()};
+
+function myFunction() {
+	document.getElementById("add").innerHTML = "You clicked me";
+	
+    var btn = document.createElement("BUTTON");
+    var n = document.createTextNode("CLICK ME");
+    btn.appendChild(n);
+    document.body.appendChild(btn);	
+}
+</script>
 
 </body>
 </html>

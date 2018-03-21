@@ -41,24 +41,13 @@ h1 {letter-spacing: 6px}
 	<textarea rows="4" cols="75" name="mc_stmt" id="mcstmt"> </textarea><br>
 	
 	<h2>Add Answer Choices:</h2>
-	<input type="label">
-	<button onclick="myFunction()">Add</button><br>
-	<script>
-	
-	function myFunction() {
-		var btn = document.createElement("BUTTON");
-		var t = document.createTextNode("Add");
-		button.appendChild(t);
-		docuemnt.body.appendChild(btn);
-	}
-	</script>
-	<p id="demo"></p>
+	<button>True</button>
+	<button>False</button>
 	
 	<br><br>
 	
-
-	
-	<!-- Next and Previous buttoms for navigating through creation of test/survey-->
+	<!-- Cancel, Next and Previous buttoms for navigating through creation of test/survey-->
+	<input type="button" onclick="location.href='index.html';" value="Cancel" />
 	<input type="button" onclick="location.href='create.html';" value="Previous" />
 	<input type="submit" onclick="location.href='add_another.html';" value="Next" />
     </div>

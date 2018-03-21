@@ -37,9 +37,9 @@ h1 {letter-spacing: 6px}
 	
 	<!-- Modify further to store in MySQL server-->
 	
-	<!-- Radio buttons with options for chossing question type-->
+	<!-- Radio buttons with options for chossing question type
 	<label for="male">True/False</label>
-	<input type="radio" name="ques_type" id="tf" value="True/False"><br>
+	<input type="button" name="ques_type" id="tf" value="True/False"><br>
 	<label for="male">Multiple Choice</label>
 	<input type="radio" name="ques_type" id="mult" value="Multiple Choice"><br>
 	<label for="female">Short Answer</label>
@@ -49,11 +49,19 @@ h1 {letter-spacing: 6px}
 	<label for="other">Matching</label>
 	<input type="radio" name="ques_type" id="match" value="Matching"><br>
 	<label for="other">Ranking</label>
-	<input type="radio" name="ques_type" id="rank" value="Ranking"><br><br>
+	<input type="radio" name="ques_type" id="rank" value="Ranking"><br><br>-->
 	
-	<!-- Next and Previous buttoms for navigating through creation of test/survey-->
+	<input type="button" onclick="location.href='true_false.html';" value="True/False" /><br><br>
+	<input type="button" onclick="location.href='mult_choice.html';" value="Multiple Choice" /><br><br>
+	<input type="button" onclick="location.href='short_answer.html';" value="Short Answer" /><br><br>
+	<input type="button" onclick="location.href='essay_answer.html';" value="Essay Answer" /><br><br>
+	<input type="button" onclick="location.href='matching.html';" value="Matching" /><br><br>
+	<input type="button" onclick="location.href='ranking.html';" value="Ranking" /><br><br>
+	
+		
+	<!-- Cancel and Previous buttoms for navigating through creation of test/survey-->
+	<input type="button" onclick="location.href='index.html';" value="Cancel" />
 	<input type="button" onclick="location.href='create.html';" value="Previous" />
-	<input type="submit" onclick="location.href='index.html';" value="Next" />
     </div>
   </div>
 
