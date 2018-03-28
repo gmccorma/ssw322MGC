@@ -41,15 +41,29 @@ h1 {letter-spacing: 6px}
 	<textarea rows="4" cols="75" name="mc_stmt" id="mcstmt"> </textarea><br>
 	
 	<h2>Add Answer Choices:</h2>
+	<div id="ranking_q">
+	<input type="label">
 	<input type="label">
 	<button onclick="myFunction()">Add</button><br>
+	</div>
 	<script>
 	
 	function myFunction() {
+		var lbl_1 = document.createElement("INPUT");
+		var lbl_2 = document.createElement("INPUT");
 		var btn = document.createElement("BUTTON");
 		var t = document.createTextNode("Add");
+		var br = document.createElement("BR");
+		
+		
 		btn.appendChild(t);
-		docuemnt.body.appendChild(btn);
+		btn.onclick = myFunction() {};
+		
+		document.getElementById("ranking_q").appendChild(br);
+		document.getElementById("ranking_q").appendChild(lbl_1);
+		document.getElementById("ranking_q").appendChild(lbl_2);
+		document.getElementById("ranking_q").appendChild(btn);
+		
 	}
 	</script>
 	<p id="demo"></p>

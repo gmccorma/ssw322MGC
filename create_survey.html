@@ -39,8 +39,20 @@ h1 {letter-spacing: 6px}
 	
 	<input type="label" name="name" id="survey_name">
 	
-	<script>
-		var survey_name = document.getElementById('test_name');
+<script>			
+	function (global) {
+		document.getElementById("next").addEventListener("click", function () {
+			global.localStorage.setItem("mySharedData",document.getElementById("output_name").value);
+			}, false);
+			}(window));
+				
+	function myFunction() {
+	
+		var s = document.getElementById("survey_name");
+		localStorage.setItem("s_name",s.value);
+		var storedValue = localStorage.getItem("s_name");
+		alert(storedValue);
+	}
 	</script>
 	
 	<!-- Cancel, Next and Previous buttoms for navigating through creation of test/survey-->
