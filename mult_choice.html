@@ -41,10 +41,10 @@ h1 {letter-spacing: 6px}
 	<textarea rows="4" cols="75" name="mc_stmt" id="mcstmt"> </textarea><br>
 	
 	<h2>Add Answer Choices:</h2>
-	<input type="label">
+	
+	<div id="mult_q"><input type="label">
 	<button id="add">Add</button>
-
-	<p id="demo"></p>
+	</div>
 	
 	<br><br>
 	
@@ -82,12 +82,17 @@ h1 {letter-spacing: 6px}
 document.getElementById("add").onclick = function() {myFunction()};
 
 function myFunction() {
-	document.getElementById("add").innerHTML = "You clicked me";
 	
+	var lbl_1 = document.createElement("INPUT");
     var btn = document.createElement("BUTTON");
-    var n = document.createTextNode("CLICK ME");
-    btn.appendChild(n);
-    document.body.appendChild(btn);	
+	var t = document.createTextNode("Add");
+	var br = document.createElement("BR");
+
+    btn.appendChild(t);
+		
+	document.getElementById("mult_q").appendChild(br);
+	document.getElementById("mult_q").appendChild(lbl_1);
+	document.getElementById("mult_q").appendChild(btn);
 }
 </script>
 
