@@ -33,23 +33,35 @@ h1 {letter-spacing: 6px}
 
   <div class="w3-padding-32 w3-center w3-padding-large">
     <div class="w3-bar w3-border w3-center w3-padding-large">
-	<h1>Enter True/False Question:</h1>
+	<h1>Choose Question Type:</h1>
 
 	<!-- Modify further to store in MySQL server-->
 
-	<h2>Enter Question Statement:</h2>
-	<textarea rows="4" cols="75" name="mc_stmt" id="mcstmt"> </textarea><br>
+	<!-- Radio buttons with options for chossing question type
+	<label for="male">True/False</label>
+	<input type="button" name="ques_type" id="tf" value="True/False"><br>
+	<label for="male">Multiple Choice</label>
+	<input type="radio" name="ques_type" id="mult" value="Multiple Choice"><br>
+	<label for="female">Short Answer</label>
+	<input type="radio" name="ques_type" id="s_ans" value="Short Answer"><br>
+	<label for="other">Essay Answer</label>
+	<input type="radio" name="ques_type" id="e_ans" value="Essay Answer"><br>
+	<label for="other">Matching</label>
+	<input type="radio" name="ques_type" id="match" value="Matching"><br>
+	<label for="other">Ranking</label>
+	<input type="radio" name="ques_type" id="rank" value="Ranking"><br><br>-->
 
-	<h2>Add Answer Choices:</h2>
-	<button>True</button>
-	<button>False</button>
+	<input type="button" onclick="location.href='true_false.html';" value="True/False" /><br><br>
+	<input type="button" onclick="location.href='mult_choice.html';" value="Multiple Choice" /><br><br>
+	<input type="button" onclick="location.href='short_answer.html';" value="Short Answer" /><br><br>
+	<input type="button" onclick="location.href='essay_answer.html';" value="Essay Answer" /><br><br>
+	<input type="button" onclick="location.href='matching.html';" value="Matching" /><br><br>
+	<input type="button" onclick="location.href='ranking.html';" value="Ranking" /><br><br>
 
-	<br><br>
 
-	<!-- Cancel, Next and Previous buttoms for navigating through creation of test/survey-->
+	<!-- Cancel and Previous buttoms for navigating through creation of test/survey-->
 	<input type="button" onclick="location.href='index.html';" value="Cancel" />
-	<input type="button" onclick="location.href='create.html';" value="Previous" />
-	<input type="submit" onclick="location.href='add_another.html';" value="Next" />
+	<input type="button" onclick="location.href='create_survey.html';" value="Previous" />
     </div>
   </div>
 
