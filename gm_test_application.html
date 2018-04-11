@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html>
+ 
+<head>
+    <title>Enter Question Name</title>
+    <link rel="stylesheet" type="text/css" href="gm_test_application_css.css">
+</head>
+ 
+<body>
+    <h1>Enter Question Name:</h1>
+	<!--Placeholder for test/survey title-->
+    <h3 id="tsTitle"></h3>
+    <hr />
+	<!-- Enter Test?Survey Title -->
+	<input type="text" id="titleName" placeholder="Enter test/survey name..."/>
+	<button type="button" onclick="addTitle()">Add</button>
+	
+	<br />
+	<br />
+	
+	<!-- Enter Question Name -->
+    <input type="text" id="questionName" placeholder="Enter question name..."/>
+    <button type="button" onclick="addQuestionName()">Add</button>
+	
+	<!--Question Name placeholder-->
+	<h4 id="qName"></h4>
+	
+	<div class="dropdown">
+		<button onclick="myFunction()" class="dropbtn">Choose Question Type</button>
+		<div id="myDropdown" class="dropdown-content">
+			<a href="javascript:addMultipleChoice()">Multiple Choice</a>
+			<a href="javascript:addTrueFalse()">True/False</a>
+			<a href="javascript:addShortAnswer()">Short Answer</a>
+			<a href="javascript:addEssayAnswer()">Essay Answer</a>
+			<a href="javascript:addMatching()">Matching</a>
+			<a href="javascript:addRanking()">Ranking</a>
+		</div>
+	</div>
+	
+	
+	<h4>My Favorite Movies</h4>
+    <ol type="A" id="favMovies">
+    </ol>
+
+	
+    <script type='text/javascript' src='https://cdn.firebase.com/js/client/1.0.15/firebase.js'></script>
+    <script type="text/javascript" src="gm_test_application.js"></script>
+</body>
+ 
+</html>
