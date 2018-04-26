@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	</head>
+
+	<body>
+		<button id="addButton">Add Quiz</button>
+		<script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+		<script type="text/javascript">
+			//Set up firebase
+			var config = {
+            apiKey: "AIzaSyCNs-xhZ_Mk1rmtzTwmnHhV2n9uTBnaeCk",
+            authDomain: "test-and-questionnaire-system.firebaseapp.com",
+            databaseURL: "https://test-and-questionnaire-system.firebaseio.com",
+            projectId: "test-and-questionnaire-system",
+            storageBucket: "test-and-questionnaire-system.appspot.com",
+            messagingSenderId: "272891125488"
+          };
+		    firebase.initializeApp(config);
+
+			var button = document.getElementById("addButton"); 
+			button.addEventListener("click", function(){
+
+				//Get Reference to Database
+			    var database = firebase.database();
+			    //get Reference to Quiz List
+			    var quizes_ref = database.ref("Test")
+			    //Add a new spot to quiz list and save the reference
+			   var new_quiz_ref = quizes_ref.push();
+				
+				
+			   // add Data to new quiz
+			   new_quiz_ref.set({
+			    	title:"Michayla's Quiz"
+			    })
+
+			    //Create a variable in ur quiz called questions and get its reference 
+			    var questions_ref = new_quiz_ref.child("Questions")
+
+			    //create a new question in the questions section and get a reference to it
+			    var question1_ref = questions_ref.push()
+
+			    //create an object to represent questions1's data
+			    var question = {
+			    	type:"TF",
+			    	text:"Is Blue?",
+			    	correct_index : 0
+			    }
+			    //save the questions data to the question1 reference
+			    question1_ref.set(question)
+
+			   	//create a new question in the questions section and get a reference to it
+			    var question2_ref = questions_ref.push()
+
+			    //create an object to represent questions2's data
+			    var question2 = {
+			    	type:"TF",
+			    	text:"1 == 2",
+			    	correct_answer:"F"
+			    }
+			    //save the questions data to the question2 reference
+			    question2_ref.set(question2)
+                
+                quizes_ref.once('value').then(function(snapshot){
+                    snapshot.forEach(function(record){
+                    console.log(record);
+                    });                              
+                });
+				
+				
+				
+			});
+            
+            
+            
+            
+            
+		</script>
+	</body>
+</html>
