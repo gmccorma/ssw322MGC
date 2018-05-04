@@ -53,21 +53,15 @@ h1 {letter-spacing: 6px}
 	<textarea rows="4" cols="75" id="tf_question"> </textarea><br>
 
 	<h4>Is the Question:</h4>
-	<div class="checkbox">
-		<input type="checkbox" checked data-toggle="toggle" id="tf_answer" data-on="True" data-off="False">
-	</div>
+	<select id="tf_answer">
+		<option id="true" value="true">True</option>
+		<option id="false" value="false">False</option>
+	</select>
 	<button id="save_Button">Save</button>
 
 	<br><br>
 <script>
 	
-	$(function(){
-		$('#toggle-two').bootstapToggle({
-			on: 'True',
-			off: 'False'
-		});
-	})
-		
 	
 	var button = document.getElementById("save_Button");
 	    button.addEventListener("click", function(){

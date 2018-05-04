@@ -10,29 +10,20 @@
 body,h1 {font-family: "Raleway", Arial, sans-serif}
 h1 {letter-spacing: 6px}
 .w3-row-padding img {margin-bottom: 12px}
+	
+	.row{
+		display: table;
+		
+	}
 </style>
 <body>
 
-<script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
- <script>
-     // Initialize Firebase
-     var config = {
-		 apiKey: "AIzaSyCNs-xhZ_Mk1rmtzTwmnHhV2n9uTBnaeCk",
-         authDomain: "test-and-questionnaire-system.firebaseapp.com",
-         databaseURL: "https://test-and-questionnaire-system.firebaseio.com",
-         projectId: "test-and-questionnaire-system",
-         storageBucket: "test-and-questionnaire-system.appspot.com",
-         messagingSenderId: "272891125488"
-         };
-     firebase.initializeApp(config);
- </script>	
-	
 <!-- !PAGE CONTENT! -->
 <div class="w3-content" style="max-width:1500px">
 
 <!-- Header -->
-<header class="w3-panel w3-center w3-opacity" style="padding: 16px">
- <!-- <h1 class="w3-xlarge">Questionnaire and Quiz System</h1>
+<!--<header class="w3-panel w3-center w3-opacity" style="padding: 16px">
+  <h1 class="w3-xlarge">Questionnaire and Quiz System</h1>
   <h1>Design VI - Group 5</h1>
 
   <div class="w3-padding-32">
@@ -40,24 +31,67 @@ h1 {letter-spacing: 6px}
       <a href="index.html" class="w3-bar-item w3-button">Home</a>
       <a href="take.html" class="w3-bar-item w3-button">Take</a>
       <a href="create.html" class="w3-bar-item w3-button w3-light-grey">Create</a>
-      <a href="view_results.html" class="w3-bar-item w3-button w3-light-grey">View Results</a> 
+      <a href="view_results.html" class="w3-bar-item w3-button w3-light-grey">View Results</a>
     </div>
-  </div>-->
-</header>
+  </div>
+</header>-->
 
   <div class="w3-padding-32 w3-center w3-padding-large">
     <div class="w3-bar w3-border w3-center w3-padding-large">
-	<h3>Enter Short Answer Question:</h3>
+	<h3>Matching Question:</h3>
 
 	<!-- Modify further to store in MySQL server-->
 
 	<h4>Enter Question Statement:</h4>
-	<textarea rows="4" cols="75" id="SA_question"> </textarea>
-	<br><br>
+	<textarea rows="4" cols="75" name="mc_stmt" id="mcstmt"> </textarea><br>
+
+	<h4>Add Answer Choices:</h4>
+	<input type="text" id="matchers">
+	<input type="text" id="matchees">
+	<button onclick="addItems()">Add</button><br>
 		
-	<button id="save_Button">Save</button>
+	<div class="row">
+		<div class="column left">
+			<!--<p>Matchers</p>-->
+			<ol type="1" id="matchers_list">
+				
+			</ol>		
+		</div>	
 		
+		<div class="column right">
+			<!--<p>Matchees</p>-->
+			<ol type="A" id="matchees_list">
+			
+			</ol>
+		</div>	
+	</div>
+		
+	<script>
+
+	function addItems() {
+		var matchers =document.getElementById("matchers").value;
+		var matchers_list = document.getElementById("matchers_list");
+		var matchers_item = document.createElement("li");
+		matchers_item.appendChild(document.createTextNode(matchers));
+		matchers_list.appendChild(matchers_item);
+		
+		var matchees =document.getElementById("matchees").value;
+		var matchees_list = document.getElementById("matchees_list");
+		var matchees_item = document.createElement("li");
+		matchees_item.appendChild(document.createTextNode(matchees));
+		matchees_list.appendChild(matchees_item);
+		
+		
+	}
+		
+
+	</script>
+
+
 	<br><br>
+
+
+
 	<!-- Cancel, Next and Previous buttoms for navigating through creation of test/survey-->
 	<!--<input type="button" onclick="location.href='index.html';" value="Cancel" />
 	<input type="button" onclick="location.href='create.html';" value="Previous" />
@@ -65,29 +99,7 @@ h1 {letter-spacing: 6px}
     </div>
   </div>
 
-<script>
 
-	var button = document.getElementById("save_Button");
-	    button.addEventListener("click", function(){
-		
-	
-		var SA_question = document.getElementById("SA_question").value;
-		
-		var database = firebase.database().ref();
-			   
-		var test_ref = database.child("Test");	
-		var questions_ref = test_ref.child("Questions");
-		
-		var question1_ref = questions_ref.push();
-		
-		question1_ref.set({
-			type: "SA",
-			question: SA_question
-		});
-	});
-	
-	
-</script>
 
 
 <!-- End Page Content -->
