@@ -68,7 +68,8 @@ h1 {letter-spacing: 6px}
 	  	var database = firebase.database().ref();
 			   
 		var Survey_ref = database.child("Survey");	
-		var questions_ref = Survey_ref.child("Questions");
+				var test_key = survey_ref.child(localStorage.getItem("testId"));
+		var questions_ref = test_key.child("Questions");
 		
 		var question1_ref = questions_ref.push();
 		

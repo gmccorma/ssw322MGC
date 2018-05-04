@@ -78,6 +78,7 @@ h1 {letter-spacing: 6px}
   <script>
 
   var button = document.getElementById("save_Button");
+	var testKey;
     button.addEventListener("click", function(){
       var testName = document.getElementById("testName").value;
 
@@ -87,11 +88,17 @@ h1 {letter-spacing: 6px}
       var test_ref = database.ref("Test");
       //Add a new spot to quiz list and save the reference
       var new_test_ref = test_ref.push();
-
+		
       //add Data to new quiz
       new_test_ref.set({
         title: testName
       });
+	  
+	  
+	  test_ref.limitToLast(1).on('child_added', function(snapshot) {
+		testKey = snapshot.key;	
+	  });
+	 
     });
 
 	  
@@ -115,7 +122,7 @@ h1 {letter-spacing: 6px}
 	<!-- Cancel, Next and Previous buttoms for navigating through creation of test/survey-->
 	<input type="button" onclick="location.href='index.html';" value="Cancel" input />
 	<input type="button" onclick="location.href='create.html';" value="Previous" />
-	<input type="submit" onclick="location.href='choose_question_type_Test.html';" value="Next" />
+	<input type="submit" onclick="location.href='load_Test.html';" value="Next" />
     </div>
   </div>
 
@@ -146,6 +153,7 @@ h1 {letter-spacing: 6px}
 	
 	function choose_tf(){
 		var x = document.createElement("IFRAME");
+		localStorage.setItem("testId", testKey);
 		x.setAttribute("src", "true_false_Test.html");
 		var container = document.getElementById("question_container");
 		container.appendChild(x);
@@ -153,6 +161,7 @@ h1 {letter-spacing: 6px}
 
 	function choose_mc(){
 		var x = document.createElement("IFRAME");
+		localStorage.setItem("testId", testKey);
 		x.setAttribute("src", "mult_choice_Test.html");
 		var container = document.getElementById("question_container");
 		container.appendChild(x);
@@ -160,6 +169,7 @@ h1 {letter-spacing: 6px}
 	
 	function choose_Short_Answer(){
 		var x = document.createElement("IFRAME");
+		localStorage.setItem("testId", testKey);
 		var container = document.getElementById("question_container");
 		x.setAttribute("src", "short_answer_Test.html");
 		container.appendChild(x);
@@ -168,6 +178,7 @@ h1 {letter-spacing: 6px}
 	
 		function choose_essay(){
 		var x = document.createElement("IFRAME");
+		localStorage.setItem("testId", testKey);
 		var container = document.getElementById("question_container");
 		x.setAttribute("src", "essay_answer_Test.html");
 		container.appendChild(x);
@@ -175,6 +186,7 @@ h1 {letter-spacing: 6px}
 	
 		function choose_Ranking(){
 		var x = document.createElement("IFRAME");
+		localStorage.setItem("testId", testKey);
 		var container = document.getElementById("question_container");
 		x.setAttribute("src", "ranking_Test.html");
 		container.appendChild(x);
@@ -182,6 +194,7 @@ h1 {letter-spacing: 6px}
 
 	function choose_matching(){
 		var x = document.createElement("IFRAME");
+		localStorage.setItem("testId", testKey);
 		var container = document.getElementById("question_container");
 		x.setAttribute("src", "matching_Test.html");
 		container.appendChild(x);

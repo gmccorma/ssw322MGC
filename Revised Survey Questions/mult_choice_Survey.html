@@ -104,7 +104,8 @@ h1 {letter-spacing: 6px}
 	  	var database = firebase.database().ref();
 			   
 		var survey_ref = database.child("Survey");	
-		var questions_ref = survey_ref.child("Questions");
+		var test_key = survey_ref.child(localStorage.getItem("testId"));
+		var questions_ref = test_key.child("Questions");
 		
 		var question1_ref = questions_ref.push();
 		
@@ -125,7 +126,8 @@ h1 {letter-spacing: 6px}
       var database = firebase.database().ref();
       //Get Reference to Test List
  		var survey_ref = database.child("Survey");	
-		var update_questions_ref = survey_ref.child("Questions");
+		var test_key = survey_ref.child(localStorage.getItem("testId"));
+		var questions_ref = test_key.child("Questions");
       //edit test name
  	  update_questions_ref.set({
 			type: "MC",

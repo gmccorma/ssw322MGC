@@ -61,6 +61,8 @@ h1 {letter-spacing: 6px}
 
 	<br><br>
 <script>
+	// gets the key of the test in question
+	//alert(localStorage.getItem("testId"));
 	
 	
 	var button = document.getElementById("save_Button");
@@ -71,8 +73,9 @@ h1 {letter-spacing: 6px}
 			
 	  	var database = firebase.database().ref();
 			   
-		var test_ref = database.child("Test");	
-		var questions_ref = test_ref.child("Questions");
+		var test_ref = database.child("Test");
+		var test_key = test_ref.child(localStorage.getItem("testId"));
+		var questions_ref = test_key.child("Questions");
 		
 		var question1_ref = questions_ref.push();
 		
