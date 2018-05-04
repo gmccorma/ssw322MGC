@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<title>W3.CSS Template</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body,h1 {font-family: "Raleway", Arial, sans-serif}
+h1 {letter-spacing: 6px}
+.w3-row-padding img {margin-bottom: 12px}
+.column {
+     float: center;
+}
+.left {
+    width: 50%;
+}
+.right {
+    width: 50%;
+}
+</style>
+<body>
+		
+
+	  <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+          var config = {
+            apiKey: "AIzaSyCNs-xhZ_Mk1rmtzTwmnHhV2n9uTBnaeCk",
+            authDomain: "test-and-questionnaire-system.firebaseapp.com",
+            databaseURL: "https://test-and-questionnaire-system.firebaseio.com",
+            projectId: "test-and-questionnaire-system",
+            storageBucket: "test-and-questionnaire-system.appspot.com",
+            messagingSenderId: "272891125488"
+          };
+      firebase.initializeApp(config);
+    </script>
+	
+
+<!-- !PAGE CONTENT! -->
+<!--<div class="w3-content" style="max-width:1500px">
+
+<!-- Header -->
+<!--<header class="w3-panel w3-center w3-opacity" style="padding: 16px">
+  <h1 class="w3-xlarge">Questionnaire and Quiz System</h1>
+  <h1>Design VI - Group 5</h1>-->
+
+  <div class="w3-padding-32 w3-center w3-padding-large">
+    <div class="w3-bar w3-border w3-center w3-padding-large">	
+	<h3>Ranking Question:</h3>
+
+
+	<h4>Enter Question:</h4>
+	<textarea rows="4" cols="75" id="ranking_Question"> </textarea><br>
+
+	<h4>Add Response Options:</h4>
+
+	<ol id="ranking_answers">	
+	</ol>
+
+	<input type="text" id="option">
+	<button onclick="addOptions()">Add</button>
+	<button id="save_Button">Save</button>
+	<button id="edit_Button">Edit</button>
+  <br><br>
+
+		
+  <script>
+
+	  function addOptions(){
+		  var ranking_answer = document.getElementById("option").value;
+		  var list = document.getElementById("ranking_answers");
+		  var list_item = document.createElement("li");
+		 list_item.appendChild(document.createTextNode(ranking_answer));
+		 list.appendChild(list_item); 
+		  
+	  }
+	  
+		var button = document.getElementById("save_Button");
+	    button.addEventListener("click", function(){
+		
+		var ranking_Question = document.getElementById("ranking_Question").value;
+		var list = document.getElementById("ranking_answers");
+		var ranking_answers = document.getElementById("ranking_answers").value;
+		var ranking_options = document.getElementById("ranking_answers").options;
+		var ranking_answer = "";
+			var i;
+			for (i = 0; i< list.length; i++) {
+				ranking_answer = ranking_answer + list.options[i].text + ", ";
+			}
+			
+	  	var database = firebase.database().ref();
+			   
+		var survey_ref = database.child("Survey");	
+		var questions_ref = survey_ref.child("Questions");
+		
+		var question1_ref = questions_ref.push();
+		
+		question1_ref.set({
+			type: "Ranking",
+			question: ranking_Question,
+			answers: ranking_answer
+			//answer: ranking_answers
+		});
+		
+
+    });	
+	  
+	var button = document.getElementById("edit_Button");
+    button.addEventListener("click", function(){
+      var ranking_Question = document.getElementById("ranking_Question").value;
+      //Get Reference to Database
+      var database = firebase.database();
+      //Get Reference to Test List
+		var survey_ref = database.child("Suvey");	
+		var update_questions_ref = survey_ref.child("Questions");
+      //edit test name
+ 	  update_questions_ref.set({
+			type: "Ranking",
+			question: ranking_Question
+      });
+    });
+  </script>
+
+
+    </div>
+</div>
+
+	<p id="demo"></p>
+
+	<br><br>
+
+
+</body>
+</html>
