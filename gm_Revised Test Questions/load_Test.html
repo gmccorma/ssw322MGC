@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+	<html>
+	<title>Load Test</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
+	<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+	<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+	
+	<!-- Header -->
+	<header class="w3-panel w3-center w3-opacity" style="padding: 16px">
+		<h1 class="w3-xlarge">Questionnaire and Quiz System</h1>
+		<h1>Design VI - Group 5</h1>
+
+		<div class="w3-padding-32">
+			<div class="w3-bar w3-border">
+			<a href="index.html" class="w3-bar-item w3-button">Home</a>
+			<a href="take.html" class="w3-bar-item w3-button">Take</a>
+			<a href="create.html" class="w3-bar-item w3-button w3-light-grey">Create</a>
+			<!--   <a href="view_results.html" class="w3-bar-item w3-button w3-light-grey">View Results</a> -->
+			</div>
+		</div>
+	</header>
+
+	<style>
+		body,h1,ol {font-family: "Raleway", Arial, sans-serif}
+		h1 {letter-spacing: 6px}
+		.w3-row-padding img {margin-bottom: 12px}
+	</style>
+	<body>
+		<div class="w3-padding-32 w3-center w3-padding-large">
+			<div class="w3-bar w3-border w3-center w3-padding-large">
+				<h1 id = "quizTitle"></h1>
+				
+				<!--<button id="addButton">Add Quiz</button>-->
+		
+
+		<br />
+		<ol id = "quizQuestions" style="font-size: 2em">
+		</ol>
+		<script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+		<script type="text/javascript">
+			//Set up firebase
+			var config = {
+            apiKey: "AIzaSyCNs-xhZ_Mk1rmtzTwmnHhV2n9uTBnaeCk",
+            authDomain: "test-and-questionnaire-system.firebaseapp.com",
+            databaseURL: "https://test-and-questionnaire-system.firebaseio.com",
+            projectId: "test-and-questionnaire-system",
+            storageBucket: "test-and-questionnaire-system.appspot.com",
+            messagingSenderId: "272891125488"
+          };
+		    firebase.initializeApp(config);
+
+			//var button = document.getElementById("addButton"); 
+			//button.addEventListener("click", function(){
+
+				//Get Reference to Database
+			    var database = firebase.database();
+			    //get Reference to Quiz List
+			    var test_ref = database.ref("Test");
+			    //Add a new spot to quiz list and save the reference
+			   var new_test_ref = test_ref.push();
+			   
+			   	// gets the key of the test in question
+				var test_key = localStorage.getItem("testId");
+				
+				
+			   // add Data to new quiz
+			  /*new_test_ref.set({
+			    	title:"Michayla's Quiz"
+			    })
+
+			    //Create a variable in ur quiz called questions and get its reference 
+			    var questions_ref = new_test_ref.child("Questions")
+
+			    //create a new question in the questions section and get a reference to it
+			    var question1_ref = questions_ref.push()
+
+			    //create an object to represent questions1's data
+			    var question1 = {
+			    	type:"TF",
+			    	text:"Is Blue?",
+			    	correct_index : 0
+			    }
+			    //save the questions data to the question1 reference
+			    question1_ref.set(question1)
+
+			   	//create a new question in the questions section and get a reference to it
+			    var question2_ref = questions_ref.push()
+
+			    //create an object to represent questions2's data
+			    var question2 = {
+			    	type:"TF",
+			    	text:"1 == 2",
+			    	correct_answer:"F"
+			    }
+			    //save the questions data to the question2 reference
+			    question2_ref.set(question2)*/
+				
+				
+				// gets the title of the quiz
+				
+				test_ref.once('value').then(function(snapshot) {
+					snapshot.forEach(function (childSnapshot) {
+					alert(childSnapshot.key + " " + test_key);
+					
+						if (childSnapshot.key == test_key) {
+							alert("true");
+							var value = childSnapshot.val();
+							var qt = document.createElement("label");
+							qt.appendChild(document.createTextNode(value.title));
+							document.getElementById("quizTitle").appendChild(qt);
+						}
+
+					});
+				});	
+				
+				//var q_ref = test_ref.child("Questions");
+				// get keys of each test in database
+				// create way of finding correct test to load first
+				
+				// test_ref is the "Test" level of the database
+				test_ref.once('value').then(function(snap1) {
+					
+					
+					// Key under "Test"
+					snap1.forEach(function (snap2) {
+					
+						if (snap2.key == test_key) {
+						var value = snap2.val();
+						var que_ref = test_ref.child(snap2.key);
+						
+						
+						// "Questions"
+						snap2.forEach(function(snap3) {
+							var que_ref2 = que_ref.child(snap3.key);
+							
+							
+							// Key under "Questions"
+							snap3.forEach(function(snap4) {
+								var que_ref3 = que_ref.child(snap4.key);
+								//alert(que_ref3);
+								var quest_name = snap4.val();
+
+								if (quest_name.type == "TF") {
+									// make appropriate elems
+									// create li item with question title
+									var li = document.createElement("li");
+									var h2_t = document.createElement("h2");
+									h2_t.appendChild(document.createTextNode("True/False Question: " + quest_name.question));
+									li.appendChild(h2_t);
+									document.getElementById("quizQuestions").appendChild(li);
+									h2_t.appendChild(document.createTextNode(" Answer: " + quest_name.answer));
+									li.appendChild(h2_t);
+									document.getElementById("quizQuestions").appendChild(li);
+								}
+								else if (quest_name.type == "MC") {
+									// make appropriate elems
+									// create li item with question title
+									var li = document.createElement("li");
+									var h2_t = document.createElement("h2");
+									h2_t.appendChild(document.createTextNode("Multiple Choice Question: " + quest_name.question));
+									li.appendChild(h2_t);
+									document.getElementById("quizQuestions").appendChild(li);
+									h2_t.appendChild(document.createTextNode(" Answer: " + quest_name.answer));
+									li.appendChild(h2_t);
+									document.getElementById("quizQuestions").appendChild(li);								
+								}
+								else if (quest_name.type == "SA") {
+									// make appropriate elems
+									// create li item with question title
+									
+									var li = document.createElement("li");
+									var h2_t = document.createElement("h2");
+									h2_t.appendChild(document.createTextNode("Short Answer Question: " + quest_name.question));
+									li.appendChild(h2_t);
+									document.getElementById("quizQuestions").appendChild(li);
+									
+								}
+								else if (quest_name.type == "Essay") {
+									// make appropriate elems
+									// create li item with question title
+									var li = document.createElement("li");
+									var h2_t = document.createElement("h2");
+									h2_t.appendChild(document.createTextNode("Essay Question: " + quest_name.question));
+									li.appendChild(h2_t);
+									document.getElementById("quizQuestions").appendChild(li);
+								}
+								else if (quest_name.type == "Ranking") {
+									// make appropriate elems
+									// create li item with question title
+									var li = document.createElement("li");
+									var h2_t = document.createElement("h2");
+									h2_t.appendChild(document.createTextNode("Ranking Question: " + quest_name.question));
+									li.appendChild(h2_t);
+									document.getElementById("quizQuestions").appendChild(li);
+									h2_t.appendChild(document.createTextNode(" Answer: " + quest_name.answer));
+									li.appendChild(h2_t);
+									document.getElementById("quizQuestions").appendChild(li);
+								}
+								else if (quest_name.type == "Matching") {
+									// make appropriate elems
+									// create li item with question title
+									var li = document.createElement("li");
+									var h2_t = document.createElement("h2");
+									h2_t.appendChild(document.createTextNode("Matching Question: " + quest_name.question));
+									li.appendChild(h2_t);
+									document.getElementById("quizQuestions").appendChild(li);
+									h2_t.appendChild(document.createTextNode(" Answer: " + quest_name.answer));
+									li.appendChild(h2_t);
+									document.getElementById("quizQuestions").appendChild(li);
+								}
+							});
+						});
+					}	
+					});
+					
+				});
+			//});
+		</script>
+	</body>
+</html>
