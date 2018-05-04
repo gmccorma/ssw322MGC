@@ -87,6 +87,7 @@ h1 {letter-spacing: 6px}
 </script>
 
 	<button id="save_Button">Save</button>
+    <button id="edit_Button">Edit</button>
 		<!-- Cancel, Next and Previous buttoms for navigating through creation of test/survey-->
 <!--	<input type="button" onclick="location.href='index.html';" value="Cancel" />
 	<input type="button" onclick="location.href='create.html';" value="Previous" />
@@ -98,6 +99,36 @@ h1 {letter-spacing: 6px}
 <script>
 	
 		var button = document.getElementById("save_Button");
+	    button.addEventListener("click", function(){
+		
+		var mc_question = document.getElementById("mc_question").value;
+		var select = document.getElementById("mc_options");
+		var mc_answer = document.getElementById("mc_options").value;
+		//var mc_options = document.getElementById("mc_options").options;
+		var mc_options = "";
+			var i;
+			for (i = 0; i< select.length; i++) {
+				mc_options = mc_options + select.options[i].text + ", ";
+			}
+			
+	  	var database = firebase.database().ref();
+			   
+		var test_ref = database.child("Test");	
+		var questions_ref = test_ref.child("Questions");
+		
+		var question1_ref = questions_ref.push();
+		
+		question1_ref.set({
+			type: "MC",
+			question: mc_question,
+			options: mc_options,
+			answer: mc_answer
+		});
+		
+
+    });	
+    
+    var button = document.getElementById("edit_Button");
 	    button.addEventListener("click", function(){
 		
 		var mc_question = document.getElementById("mc_question").value;
